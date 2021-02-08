@@ -1,5 +1,18 @@
-# Code for Controllable Guarantees for Fair Outcomes via Contrastive Information Estimation
+## Code for "Controllable Guarantees for Fair Outcomes via Contrastive Information Estimation", AAAI 2021
+Umang Gupta, Aaron Ferber, Bistra Dilkina, and Greg Ver Steeg. “Controllable Guarantees for Fair Outcomes via Contrastive Information Estimation.” In: Thirty-Fifth AAAI Conference on Artificial
+Intelligence. 2021 (To appear)
 
+To cite the paper, please use the following BibTeX:
+```
+@article{gupta2021controllable,
+      title={{Controllable Guarantees for Fair Outcomes via Contrastive Information Estimation}},
+      author={Umang Gupta and Aaron Ferber and Bistra Dilkina and Greg Ver Steeg},
+      year={2021},
+      eprint={2101.04108},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
 
 ## Reproducing Results from Paper
 ### Requirements
@@ -56,7 +69,7 @@ python3 -m src.scripts.main -c config/config_fcrl.py --exp_name test --data.name
 
 
 ### NOTE:
-- You may have to comment some parts in `src/scripts/plot/py` utility
+- You may have to comment some parts in `src/scripts/plot.py` utility
   if you want to generate only some of the plots.
   Please check that file to see the lines that should be commented.
 - For LAFTR and MIFR (lag-fairness), we use their official implementations with
@@ -64,12 +77,13 @@ python3 -m src.scripts.main -c config/config_fcrl.py --exp_name test --data.name
   We have provided the modified code in the respective folders.
   We use tensorflow-cpu and `python 3.6` to generate their results.
   See the `pkg_install.sh` or  `requirements.txt` in those folder.
-- For legacy reason the code requires wandb (wandb.ai), but we have disabled it
-   and it will only generate tensorboard logs, but no logs will be uploaded.
+- The code requires [wandb](wandb.ai). However, we have disabled it
+   and it will only generate tensorboard logs. No logs will be uploaded.
 
 ---------------------------
 
-## Details of FCRL and running the code.
+## More Details.
+### Details of FCRL 
 Above instructions should help you reproduce the experiments reported
 in both Main Paper and Supplementary. If you are interested in knowing how FCRL
 is implemented, please read below:
@@ -95,3 +109,11 @@ python3 -m python3 -m src.scripts.main -c config/config_fcrl.py --exp_name test 
     --result_folder result/$DATA/fcrl --train.max_epoch 200 --device cpu \
     --model.lambda_ <lambda> --model.beta <beta>
 ```
+
+### scripts folder
+Most of the python execution files are in `src/scripts` folder. 
+- `main.py` is for running all the representation learning algorithms other than lag-fairness and LAFTR.
+- `plot.py` is for plotting the results
+- `lp.py` is used by `plot.py` to get the optimal parity-accuracy trade-off as discussed in the paper. 
+- `eval_embeddings.py` is used to evaluate embeddings i.e., train diffferent classifiers and compute accuracy, parity and other metrics. It relies on the `<method>`/`<param details>` kind of folder structure to load correct embeddings and produce results. See shell scripts and main experiments above to understand how to structure folders. Or you can use chunks of this code to write your own evaluation. 
+- `eval_invariance_config.py` is similar to `eval_embeddings.py` but predicts c from the representations, which is a common metric used by some of the adversarial learning paper to evaluate invariance/fairness. 
