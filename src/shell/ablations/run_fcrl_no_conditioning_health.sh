@@ -8,7 +8,7 @@ function job() {
   log_file=$(python3 src/shell/get_log_filename.py -f "$LOGS_FOLDER" -s "$string")
   result_folder=$(echo "$FOLDER"/l="$lambda"_b="$beta")
 
-  echo "Running NCE Supervised for beta=$beta beta=$lambda"
+  echo "Running FCRL (no conditioning) for beta=$beta beta=$lambda"
   echo -e "\t on device $device"
   echo -e "\t for data $DATANAME and"
   echo -e "\t storing logs in $log_file, result in $result_folder"
