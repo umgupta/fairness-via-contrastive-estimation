@@ -33,7 +33,7 @@ mkdir -p $FOLDER
 export DEVICE="cuda"
 for lambda in 1e-2 2e-2 3e-2 4e-2 5e-2 6e-2 7e-2 8e-2 9e-2 1e-1 2e-1 3e-1 4e-1 5e-1 6e-1 7e-1 8e-1 9e-1 1e0 11e-1 12e-1 13e-1 14e-1 15e-1 16e-1 17e-1 18e-1 19e-1 2e0
 do
-  job $lambda 0.5
+  job $lambda 0.5 $DEVICE
 done
 
 #export -f job
