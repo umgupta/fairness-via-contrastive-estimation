@@ -11,12 +11,12 @@ function job() {
   result_folder=$(echo "$FOLDER"/l="$lambda"_b="$beta")
 
   echo "Running FCRL for beta=$beta lambda=$lambda"
-  echo -e "\t on device $device"
+  echo -e "\t on device $DEVICE"
   echo -e "\t for data $DATANAME and"
   echo -e "\t storing logs in $log_file, result in $result_folder"
   python3 -m src.scripts.main -c config/config_fcrl.py \
     --exp_name "$FOLDER"/l="$lambda"_b="$beta" \
-    --result_folder "$result_folder" --device "$device" --data.name "$DATANAME" \
+    --result_folder "$result_folder" --device "$DEVICE" --data.name "$DATANAME" \
     --model.arch_file src/arch/health/health_fcrl.py \
     --model.lambda_ "$lambda" --model.beta "$beta" \
     --train.max_epoch 200 --train.batch_size 256  >"$log_file" 2>&1
