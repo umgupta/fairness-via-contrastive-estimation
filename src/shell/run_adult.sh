@@ -8,7 +8,7 @@ python3 -m src.scripts.eval_embeddings -D -f result/adult/cvib_supervised -r res
 
 # MAXENT
 bash src/shell/adult/run_maxent_adult.sh
-python3 -m src.scripts.eval_embeddings -D -f result/adult/maxent -r result/eval/adult -m "maxent" --force -c config/eval_config.py
+python3 -m src.scripts.eval_embeddings -D -f result/adult/maxent -r result/eval/adult -m "maxent_arl" --force -c config/eval_config.py
 
 
 # ADV FORGETTING
