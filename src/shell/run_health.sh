@@ -1,5 +1,5 @@
 # FCRL
-bash src/shell/adult/run_fcrl_health.sh
+bash src/shell/health/run_fcrl_health.sh
 python3 -m src.scripts.eval_embeddings -D -f result/health/fcrl -r result/eval/health -m "fcrl" --force -c config/eval_config.py
 
 # CVIB
